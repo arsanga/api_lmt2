@@ -1,7 +1,6 @@
 package lmt.lamaintenduapi.model;
 
 import lombok.Data;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -38,14 +37,6 @@ public class User extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
     List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
-
-
-//    @ManyToMany
-//    List<Evenement> evenements = new ArrayList<>();
-//
-//    @ManyToMany
-//    @RestResource(exported = false)
-//    List<Role> roles = new ArrayList<>();
 
     public Boolean getAdmin() {
         return isAdmin;

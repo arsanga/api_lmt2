@@ -23,8 +23,6 @@ public class UserController implements ResourceAssembler<User, Resource<User>> {
     @Autowired
     private EntityLinks entityLinks;
 
-    // private static final String PATH = "/error";
-
     @GetMapping(path = "/search")
     public ResponseEntity<Resource<User>> FindUserByEmail(@RequestParam(value = "email") String email){
 
