@@ -48,13 +48,4 @@ public class UserController implements ResourceAssembler<User, Resource<User>> {
         return new Resource<>(User, self, rel);
     }
 
-//    @RequestMapping(value=PATH, method=RequestMethod.GET)
-//    public String defaulErrorMessage(){
-//        return "ressource non disponible";
-//    }
-//
-//    public String getErrorPath() {
-//        return PATH;
-//    }
-
 }

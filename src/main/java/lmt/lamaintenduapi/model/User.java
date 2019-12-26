@@ -1,9 +1,12 @@
 package lmt.lamaintenduapi.model;
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,7 +18,34 @@ public class User extends BaseEntity implements Serializable {
     String urlPhoto;
     String userId;
     String prenom;
+    String tel;
     Boolean isAdmin;
+
+    @OneToMany(mappedBy = "userDon", cascade = CascadeType.REMOVE)
+    List<Don> dons = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userBesoinsVetements", cascade = CascadeType.REMOVE)
+    List<Vetements> besoinsVetements = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userBesoinsHygiene", cascade = CascadeType.REMOVE)
+    List<Hygiene> besoinsHygiene = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userBesoinsLogistique", cascade = CascadeType.REMOVE)
+    List<Logistique> besoinsLogistique = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userBesoinsService", cascade = CascadeType.REMOVE)
+    List<Service> besoinsService = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
+    List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
+
+
+//    @ManyToMany
+//    List<Evenement> evenements = new ArrayList<>();
+//
+//    @ManyToMany
+//    @RestResource(exported = false)
+//    List<Role> roles = new ArrayList<>();
 
     public Boolean getAdmin() {
         return isAdmin;
