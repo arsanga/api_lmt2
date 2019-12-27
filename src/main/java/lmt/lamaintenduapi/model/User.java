@@ -18,7 +18,6 @@ public class User extends BaseEntity implements Serializable {
     String userId;
     String prenom;
     String tel;
-    Boolean isAdmin;
 
     @OneToMany(mappedBy = "userDon", cascade = CascadeType.REMOVE)
     List<Don> dons = new ArrayList<>();
@@ -38,13 +37,11 @@ public class User extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
     List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
 
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "userRole")
+    protected User userRole;
+
     public String getPrenom() {
         return prenom;
     }
