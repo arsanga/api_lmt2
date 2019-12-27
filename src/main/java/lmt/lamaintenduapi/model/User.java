@@ -37,12 +37,7 @@ public class User extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
     List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
 
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userRole")
-    protected User userRole;
-
-    public String getPrenom() {
+   public String getPrenom() {
         return prenom;
     }
 

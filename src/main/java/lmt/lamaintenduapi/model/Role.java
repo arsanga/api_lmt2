@@ -1,9 +1,10 @@
 package lmt.lamaintenduapi.model;
 
 import lombok.Data;
-import javax.persistence.CascadeType;
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Role extends BaseEntity implements Serializable {
 
     String roleName;
 
-    @OneToMany(mappedBy = "userRole", cascade = CascadeType.REMOVE)
-    List<Role> userRole = new ArrayList<>();
+    @ManyToMany
+    @RestResource(exported = false)
+    List<User> users = new ArrayList<>();
 }
