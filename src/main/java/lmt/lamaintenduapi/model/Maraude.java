@@ -18,8 +18,8 @@ public class Maraude extends Evenement implements Serializable{
     String commentaire;
     int participantMax;
     public Maraude(){
-        this.date =super.getDate();
-        this.participantMax = super.getParticipantMax();
+        this.date =super.date;
+        this.participantMax = super.participantMax;
         this.commentaire = "";
     }
 
