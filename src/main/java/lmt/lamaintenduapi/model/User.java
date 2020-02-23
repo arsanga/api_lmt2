@@ -1,11 +1,12 @@
 package lmt.lamaintenduapi.model;
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 @Data
 @Entity
@@ -18,26 +19,30 @@ public class User extends BaseEntity implements Serializable {
     String userId;
     String prenom;
     String tel;
+    boolean vehicule;
 
-    @OneToMany(mappedBy = "userDon", cascade = CascadeType.REMOVE)
-    List<Don> dons = new ArrayList<>();
+    boolean isOnLine;
 
-    @OneToMany(mappedBy = "userBesoinsVetements", cascade = CascadeType.REMOVE)
-    List<Vetements> besoinsVetements = new ArrayList<>();
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    Role role;
+//
+//    @OneToMany(mappedBy = "userBesoinsVetements", cascade = CascadeType.REMOVE)
+//    List<Vetements> besoinsVetements = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "userBesoinsHygiene", cascade = CascadeType.REMOVE)
+//    List<Hygiene> besoinsHygiene = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "userBesoinsLogistique", cascade = CascadeType.REMOVE)
+//    List<Logistique> besoinsLogistique = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "userBesoinsService", cascade = CascadeType.REMOVE)
+//    List<Service> besoinsService = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
+//    List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userBesoinsHygiene", cascade = CascadeType.REMOVE)
-    List<Hygiene> besoinsHygiene = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userBesoinsLogistique", cascade = CascadeType.REMOVE)
-    List<Logistique> besoinsLogistique = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userBesoinsService", cascade = CascadeType.REMOVE)
-    List<Service> besoinsService = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
-    List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
-
-   public String getPrenom() {
+    public String getPrenom() {
         return prenom;
     }
 
@@ -83,5 +88,29 @@ public class User extends BaseEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public boolean isVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(boolean vehicule) {
+        this.vehicule = vehicule;
+    }
+
+    public boolean isOnLine() {
+        return isOnLine;
+    }
+
+    public void setIsOnLine(boolean isOnLine) {
+        this.isOnLine = isOnLine;
     }
 }

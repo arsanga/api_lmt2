@@ -13,7 +13,7 @@ public class Don extends BaseEntity implements Serializable {
     String date;
     String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userDon")
-    protected User userDon;
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    protected User user;
 }

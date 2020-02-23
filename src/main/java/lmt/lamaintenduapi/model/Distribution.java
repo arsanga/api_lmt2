@@ -2,9 +2,12 @@ package lmt.lamaintenduapi.model;
 
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +20,18 @@ public class Distribution extends Evenement implements Serializable{
     int nbrRepas;
     int participantMax;
     public Distribution(){
-        this.date =super.getDate();
-        this.participantMax = super.getParticipantMax();
+        this.date =super.date;
+        this.participantMax = super.participantMax;
         this.nbrRepas = 0;
     }
 
-    @ManyToMany
-    List<User> users = new ArrayList<>();
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    User user;
 
-    @ManyToMany
-    List<Lieu> lieus = new ArrayList<>();
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    Lieu lieu;
+
 }
 

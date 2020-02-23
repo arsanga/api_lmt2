@@ -8,8 +8,4 @@ import java.io.Serializable;
 public class Evenement extends BaseEntity implements Serializable {
     String date;
     int participantMax;
-    public Evenement(){
-        this.date = "";
-        this.participantMax = 0;
-    }
 }

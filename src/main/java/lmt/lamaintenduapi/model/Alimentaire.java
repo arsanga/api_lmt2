@@ -1,6 +1,7 @@
 package lmt.lamaintenduapi.model;
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,17 +13,13 @@ public class Alimentaire extends BesoinEvenement implements Serializable {
 
     String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userBesoinsAlimentaire")
-    protected User userBesoinsAlimentaire;
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "destinateurBesoinsAlimentaire")
-    protected Destinateur destinateurBesoinsAlimentaire;
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    Destinateur destinateur;
 
-    public Alimentaire(){
-        this.description = super.description;
-        this.userBesoinsAlimentaire = super.userBesoinEvenements;
-        this.destinateurBesoinsAlimentaire = super.destinateurBesoinEvenement;
-    }
+
 }

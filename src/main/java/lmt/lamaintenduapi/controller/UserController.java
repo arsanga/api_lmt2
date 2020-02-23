@@ -1,6 +1,8 @@
 package lmt.lamaintenduapi.controller;
 
+import lmt.lamaintenduapi.Repository.MaraudeUsersRepository;
 import lmt.lamaintenduapi.Repository.UserRepository;
+import lmt.lamaintenduapi.model.MaraudeUsers;
 import lmt.lamaintenduapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -21,6 +23,9 @@ public class UserController implements ResourceAssembler<User, Resource<User>> {
     UserRepository userRepository;
 
     @Autowired
+    MaraudeUsersRepository maraudeUsersRepository;
+
+    @Autowired
     private EntityLinks entityLinks;
 
     @GetMapping(path = "/search")
@@ -38,6 +43,36 @@ public class UserController implements ResourceAssembler<User, Resource<User>> {
             return new ResponseEntity<>(userResource, HttpStatus.OK);
         }
     }
+
+    @GetMapping(path = "/addUserAndRole")
+    public ResponseEntity<Resource<MaraudeUsers>> addUserAndRole(@RequestParam(value = "userId") int idUser, @RequestParam(value = "maraudeId") int idMaraude){
+
+       MaraudeUsers maraudeUsers = new MaraudeUsers(idUser, idMaraude);
+
+        maraudeUsers = maraudeUsersRepository.save(maraudeUsers);
+
+        if(maraudeUsers == null){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+//    @GetMapping(path = "/search")
+//    public UserRole findUserRoleByUserId(@RequestParam(value = "userId") int userId){
+//
+//        UserRole userRole;
+//
+//        userRole = userRoleRepository.findByUserId(userId);
+//
+//        if(userRole == null){
+//            return null;
+//        }
+//        else{
+//            return userRole;
+//        }
+//    }
 
     @Override
     public Resource<User> toResource(User User) {

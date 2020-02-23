@@ -12,11 +12,11 @@ import java.io.Serializable;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
+  public int getId() {
 
-    public int getId() {
-        return this.id;
+          return this.id;
     }
 
     public void setId(int id) {

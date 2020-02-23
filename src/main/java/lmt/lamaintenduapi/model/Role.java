@@ -14,8 +14,4 @@ import java.util.List;
 public class Role extends BaseEntity implements Serializable {
 
     String roleName;
-
-    @ManyToMany
-    @RestResource(exported = false)
-    List<User> users = new ArrayList<>();
 }

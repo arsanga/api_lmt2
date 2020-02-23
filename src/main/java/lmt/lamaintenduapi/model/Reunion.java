@@ -2,9 +2,12 @@ package lmt.lamaintenduapi.model;
 
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +20,11 @@ public class Reunion extends Evenement implements Serializable {
     String organisateur;
     String date;
     int participantMax;
-    public Reunion(){
-        this.organisateur = "";
-        this.date =super.date;
-        this.participantMax = super.participantMax;
-    }
-    @ManyToMany
-    List<User> users = new ArrayList<>();
 
-    @ManyToMany
-    List<Lieu> lieus = new ArrayList<>();
+    @ManyToOne(fetch= FetchType.EAGER)
+    @RestResource(exported = false)
+    Lieu lieu;
+
+//    @ManyToMany
+//    List<Lieu> lieus = new ArrayList<>();
 }
