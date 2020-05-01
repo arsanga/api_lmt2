@@ -20,8 +20,13 @@ public class MaraudeUsers extends BaseEntity implements Serializable {
     @RestResource(exported = false)
     Maraude maraude;
 
-   public MaraudeUsers(int idUser, int idMaraude){
+    boolean participate;
+
+    boolean vehicule;
+
+   public MaraudeUsers(int idUser, int idMaraude, boolean participate){
         this.user.id = idUser;
         this.maraude.id = idMaraude;
+        this.participate = participate;
     }
 }

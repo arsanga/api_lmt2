@@ -26,21 +26,6 @@ public class User extends BaseEntity implements Serializable {
     @ManyToOne(fetch= FetchType.EAGER)
     @RestResource(exported = false)
     Role role;
-//
-//    @OneToMany(mappedBy = "userBesoinsVetements", cascade = CascadeType.REMOVE)
-//    List<Vetements> besoinsVetements = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "userBesoinsHygiene", cascade = CascadeType.REMOVE)
-//    List<Hygiene> besoinsHygiene = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "userBesoinsLogistique", cascade = CascadeType.REMOVE)
-//    List<Logistique> besoinsLogistique = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "userBesoinsService", cascade = CascadeType.REMOVE)
-//    List<Service> besoinsService = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "userBesoinsAlimentaire", cascade = CascadeType.REMOVE)
-//    List<Alimentaire> besoinsAlimentaire = new ArrayList<>();
 
     public String getPrenom() {
         return prenom;

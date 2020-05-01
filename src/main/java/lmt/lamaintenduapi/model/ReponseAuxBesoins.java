@@ -3,21 +3,26 @@ package lmt.lamaintenduapi.model;
 import lombok.Data;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
-public class BesoinEvenement extends BaseEntity implements Serializable {
-    String description;
+@Entity
+public class ReponseAuxBesoins extends BaseEntity implements Serializable {
+
+    int quantite;
+
+    String dateReponse;
 
     @ManyToOne(fetch= FetchType.EAGER)
     @RestResource(exported = false)
-    protected Maraude maraude;
+    BesoinsRemontes besoinsRemontes;
 
     @ManyToOne(fetch= FetchType.EAGER)
     @RestResource(exported = false)
-    protected Destinateur destinateur;
+    User user;
+
 
 }

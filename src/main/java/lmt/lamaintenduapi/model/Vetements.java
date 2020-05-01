@@ -8,21 +8,10 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class Vetements extends BesoinEvenement implements Serializable {
-    String type;
+public class Vetements extends BaseEntity implements Serializable {
+
+    String typeNom;
+
     String description;
-
-    @ManyToOne(fetch= FetchType.EAGER)
-    @RestResource(exported = false)
-    User user;
-//
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "destinateurBesoinsHygiene")
-//    protected Destinateur destinateurBesoinsVetements;
-
-    @ManyToOne(fetch= FetchType.EAGER)
-    @RestResource(exported = false)
-    Destinateur destinateur;
-
 
 }

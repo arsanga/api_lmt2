@@ -9,17 +9,10 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class Service extends BesoinEvenement implements Serializable {
+public class Service extends BaseEntity implements Serializable {
+
+    String typeNom;
 
     String description;
-
-    @ManyToOne(fetch= FetchType.EAGER)
-    @RestResource(exported = false)
-    User user;
-
-
-    @ManyToOne(fetch= FetchType.EAGER)
-    @RestResource(exported = false)
-    Destinateur destinateur;
 
 }
